@@ -1,0 +1,39 @@
+<div class="section">
+    <div class="container">
+        <h1 class="title is-1">Canal de Youtube</h1>
+        <hr>
+        <div class="card-columns animated fadeIn" *ngIf="videos.length > 0">
+            <div class="card pointerCard" *ngFor="let video of videos">
+                <div class="card-image">
+                    <figure class="image ">
+                        <img [src]="video.thumbnails.high.url" alt="">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content has-text-centered">
+                            <p class="title is-4">{{video.title}} </p>
+                            <button (click)="verVideo(video)" class="button is-info">Ver Video</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <a (click)="cargarMas()" class="button is-danger is-outlined is-block">Ver mas .....</a>
+    </div>
+</div>
+<div class="modal animated zoomIn" [ngClass]="{'is-active': modalSel }" *ngIf="modalSel">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">{{videoSel.title}}</p>
+        </header>
+        <section class="modal-card-body">
+            <iframe width="100%" height="315" [src]="videoSel.resourceId.videoId | domseguro :'https://www.youtube.com/embed/'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </section>
+        <footer class="modal-card-foot">
+            <button (click)="cerrarModal()" class="button is-danger">Cancel</button>
+        </footer>
+    </div>
+</div>
